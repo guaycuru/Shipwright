@@ -1503,6 +1503,7 @@ s32 func_80091880(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec3f* p
     s32 type;
     s32 dListOffset = 0;
     Gfx** dLists;
+    size_t ptrSize = sizeof(uint32_t);
 
     if ((modelGroup == 2) && !LINK_IS_ADULT && (ptr[1] == 2)) {
         modelGroup = 1;
@@ -1522,12 +1523,12 @@ s32 func_80091880(GlobalContext* globalCtx, s32 limbIndex, Gfx** dList, Vec3f* p
         type = gPlayerModelTypes[modelGroup][2];
         D_80160018 = type;
         if (type == 10) {
-            dListOffset = ptr[1] * sizeof(uintptr_t);
+            dListOffset = ptr[1] * ptrSize;
         }
     } else if (limbIndex == PLAYER_LIMB_SHEATH) {
         type = gPlayerModelTypes[modelGroup][3];
         if ((type == 18) || (type == 19)) {
-            dListOffset = ptr[1] * sizeof(uintptr_t);
+            dListOffset = ptr[1] * ptrSize;
         } else if (type == 16 && CVar_GetS32("gPauseLiveLink", 0)) {
             //if (ptr[0] == 1)
                 //dListOffset = 4;
