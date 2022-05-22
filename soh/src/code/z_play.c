@@ -7,6 +7,8 @@
 
 #include "soh/frame_interpolation.h"
 
+#include "z_camera.h"
+
 void* D_8012D1F0 = NULL;
 //UNK_TYPE D_8012D1F4 = 0; // unused
 Input* D_8012D1F8 = NULL;
@@ -444,6 +446,10 @@ void Gameplay_Update(GlobalContext* globalCtx) {
     if ((HREG(81) == 18) && (HREG(82) < 0)) {
         HREG(82) = 0;
         ActorOverlayTable_LogPrint();
+    }
+
+    if (CVar_GetS32("gFreeCamera", 0) && Player_InCsMode(globalCtx)) {
+        manualCamera = false;
     }
 
     gSegments[4] = VIRTUAL_TO_PHYSICAL(globalCtx->objectCtx.status[globalCtx->objectCtx.mainKeepIndex].segment);

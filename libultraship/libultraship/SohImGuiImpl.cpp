@@ -369,6 +369,7 @@ namespace SohImGui {
             pads = static_cast<OSContPad*>(ev->baseArgs["cont_pad"]);
         }});
         Game::InitSettings();
+        CVar_SetS32("gFreeCamera", 1);
     }
 
     void Update(EventImpl event) {

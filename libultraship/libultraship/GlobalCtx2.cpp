@@ -40,7 +40,7 @@ namespace Ship {
 
     void GlobalCtx2::InitWindow() {
         InitLogging();
-        Config = std::make_shared<ConfigFile>(GlobalCtx2::GetInstance(), "shipofharkinian.ini");
+        Config = std::make_shared<ConfigFile>(GlobalCtx2::GetInstance(), "shipofharkinian_nx.cfg");
         MainPath = (*Config)["ARCHIVE"]["Main Archive"];
         if (MainPath.empty()) {
             MainPath = "oot.otr";
