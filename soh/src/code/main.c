@@ -42,7 +42,7 @@ void main(int argc, char** argv)
     InitOTR();
     BootCommands_Init();
 
-    BootCommands_ParseBootArgs(argc - 1, (char**)&argv[1]);
+    // BootCommands_ParseBootArgs(argc - 1, (char**)&argv[1]);
     Main(0);
 }
 
@@ -87,7 +87,7 @@ void Main(void* arg) {
     R_ENABLE_ARENA_DBG = 0;
 
     osCreateMesgQueue(&sSiIntMsgQ, sSiIntMsgBuf, 1);
-    osSetEventMesg(5, &sSiIntMsgQ, 0);
+    osSetEventMesg(5, &sSiIntMsgQ, OS_MESG_PTR(NULL));
 
     Main_LogSystemHeap();
 
@@ -118,7 +118,7 @@ void Main(void* arg) {
 
     while (true) {
         msg = NULL;
-        osRecvMesg(&irqMgrMsgQ, (OSMesg)&msg, OS_MESG_BLOCK);
+        osRecvMesg(&irqMgrMsgQ, (OSMesg*)&msg, OS_MESG_BLOCK);
         if (msg == NULL) {
             break;
         }
